@@ -24,20 +24,3 @@ canvas {
   border: solid 1px rgb(99, 89, 169);
   border-radius: 5px;
 }
-
-#loading-div {
-  background-color: rgb(55, 0, 255);
-  position: relative;
-  width: 80%;
-  height: 3em;
-  margin: auto;
-}
-#loading-div > h1 {
-  position: relative;
-  text-align: center;
-  color: rgb(231, 0, 0);  
-}
-#loading-div > progress {
-  width: 100%;
-  height: 5em;
-}

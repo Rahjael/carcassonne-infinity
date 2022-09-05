@@ -1,7 +1,6 @@
 import { Point } from "./point.js";
 import { Tile } from "./tile.js";
 import { TILES_POOL } from "./allPics.js";
-import { ProgressBar } from "./progressBar.js";
 
 const GLOBALS = {
   TILES: {
@@ -135,11 +134,11 @@ const GLOBALS = {
     }
   }
 }
-GLOBALS.CANVAS.ref.addEventListener('pointerdown', (event) => {
+window.addEventListener('pointerdown', (event) => {
   GLOBALS.POINTER.previous = GLOBALS.POINTER.getPosition(event);
   GLOBALS.POINTER.isDown = true;
 });
-GLOBALS.CANVAS.ref.addEventListener('pointermove', (event) => {
+window.addEventListener('pointermove', (event) => {
   // console.log('pointer is moving')
   if(GLOBALS.POINTER.isDown) {
     // Get distance vector from previous coords to current,
@@ -150,10 +149,10 @@ GLOBALS.CANVAS.ref.addEventListener('pointermove', (event) => {
     GLOBALS.POINTER.previous = GLOBALS.POINTER.getPosition(event);
   }  
 });
-GLOBALS.CANVAS.ref.addEventListener('pointerup', (event) => {
+window.addEventListener('pointerup', (event) => {
   GLOBALS.POINTER.isDown = false;
 });
-GLOBALS.CANVAS.ref.addEventListener('wheel', (event) => {
+window.addEventListener('wheel', (event) => {
   // console.log('scroll event fired', event.wheelDelta);
   if(event.wheelDelta > 0) {
     GLOBALS.CANVAS.gridScaleFactor /=  GLOBALS.CANVAS.scaleMultiplier;
@@ -165,7 +164,7 @@ GLOBALS.CANVAS.ref.addEventListener('wheel', (event) => {
 });
 
 
-function createDefaultTiles(progressBar) {
+function createDefaultTiles() {
   const tiles = [];
   for (let i = 0; i < TILES_POOL.length; i++) {
     const imageName = TILES_POOL[i].img
@@ -185,12 +184,9 @@ function createDefaultTiles(progressBar) {
     else {
       newTile.type = 'road';
     }
-    // console.log('created tile', newTile.imageName);
-
     tiles.push(newTile);
-    progressBar.updateValue(i, TILES_POOL.length);
-    progressBar.draw();
   }  
+  // console.log(tiles);
   return tiles;
 }
 
@@ -268,16 +264,11 @@ function animate(time) {
 GLOBALS.CANVAS.ref.width = window.innerWidth * 0.95;
 GLOBALS.CANVAS.ref.height = window.innerHeight * 0.95;
 
-// GLOBALS.CANVAS.ref.style.display = 'none';
-
-const PROGRESS_BAR = new ProgressBar(GLOBALS);
-
-GLOBALS.TILES.defaultTiles = createDefaultTiles(PROGRESS_BAR);
+GLOBALS.TILES.defaultTiles = createDefaultTiles();
 
 GLOBALS.CAMERA.center = new Point(ctx.canvas.width / 2, ctx.canvas.height / 2);
 
 // GLOBALS.TILES.defaultTiles.forEach(tile => console.log(tile.imageName, ...tile.sides));
 
-
 // Run animation
-// animate();
+animate();

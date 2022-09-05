@@ -1,3 +1,4 @@
 example.html
 /assets/icons/
 /assets/meeple/
+/backup_before_loading_bar/
