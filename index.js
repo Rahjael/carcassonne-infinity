@@ -1,7 +1,16 @@
 import { Point } from "./point.js";
 import { Tile } from "./tile.js";
 import { TILES_POOL } from "./allPics.js";
-import { ProgressBar } from "./progressBar.js";
+// import { ProgressBar } from "./progressBar.js";
+
+function sleep(milliseconds) {
+  // This is not ideal but I need it for testing purposes
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
 
 const GLOBALS = {
   TILES: {
@@ -165,7 +174,7 @@ GLOBALS.CANVAS.ref.addEventListener('wheel', (event) => {
 });
 
 
-function createDefaultTiles(progressBar) {
+function createDefaultTiles() {
   const tiles = [];
   for (let i = 0; i < TILES_POOL.length; i++) {
     const imageName = TILES_POOL[i].img
@@ -185,11 +194,9 @@ function createDefaultTiles(progressBar) {
     else {
       newTile.type = 'road';
     }
-    console.log('created tile', newTile.imageName);
+    // console.log('created tile', newTile.imageName);
 
     tiles.push(newTile);
-    progressBar.updateValue(i, TILES_POOL.length);
-    progressBar.draw();
   }  
   return tiles;
 }
@@ -270,9 +277,12 @@ GLOBALS.CANVAS.ref.height = window.innerHeight * 0.95;
 
 // GLOBALS.CANVAS.ref.style.display = 'none';
 
-const PROGRESS_BAR = new ProgressBar(GLOBALS);
 
-GLOBALS.TILES.defaultTiles = createDefaultTiles(PROGRESS_BAR);
+GLOBALS.TILES.defaultTiles = createDefaultTiles();
+
+// Hide loading banner when document is ready
+document.querySelector('#loading-banner').style.display = 'none';
+
 
 GLOBALS.CAMERA.center = new Point(ctx.canvas.width / 2, ctx.canvas.height / 2);
 
