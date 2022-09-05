@@ -173,10 +173,7 @@ GLOBALS.CANVAS.ref.addEventListener('wheel', (event) => {
   
 });
 
-window.addEventListener('load', () => {  
-  // Hide loading banner when document is ready
-  document.querySelector('#loading-banner').style.display = 'none';
-});
+window.addEventListener('load', init);
 
 function createDefaultTiles() {
   const tiles = [];
@@ -270,26 +267,27 @@ function animate(time) {
   requestAnimationFrame(animate);
 }
 
+
+function init() {  
+  // Initialize everything
+  GLOBALS.CANVAS.ref.width = window.innerWidth * 0.95;
+  GLOBALS.CANVAS.ref.height = window.innerHeight * 0.95;
+
+  GLOBALS.TILES.defaultTiles = createDefaultTiles();
+
+  GLOBALS.CAMERA.center = new Point(ctx.canvas.width / 2, ctx.canvas.height / 2);
+
+  // GLOBALS.TILES.defaultTiles.forEach(tile => console.log(tile.imageName, ...tile.sides));
+
+  // Hide loading banner
+  document.querySelector('#loading-banner').style.display = 'none';
+  
+  // Run animation
+  animate();
+}
+
 /**
  * No other definitions from this point onwards
  */
 
 
-// Initialize everything
-GLOBALS.CANVAS.ref.width = window.innerWidth * 0.95;
-GLOBALS.CANVAS.ref.height = window.innerHeight * 0.95;
-
-// GLOBALS.CANVAS.ref.style.display = 'none';
-
-
-GLOBALS.TILES.defaultTiles = createDefaultTiles();
-
-
-
-GLOBALS.CAMERA.center = new Point(ctx.canvas.width / 2, ctx.canvas.height / 2);
-
-// GLOBALS.TILES.defaultTiles.forEach(tile => console.log(tile.imageName, ...tile.sides));
-
-
-// Run animation
-animate();
