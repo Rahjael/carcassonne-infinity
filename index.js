@@ -20,7 +20,7 @@ const GLOBALS = {
     defaultTiles: null,
     getRandom: function () {
       let randomIndex = Math.floor(Math.random() * this.defaultTiles.length);
-      let randomTile = this.defaultTiles[randomIndex].getCopy(new Point(GLOBALS.CANVAS.ref.width / 2 - 200, GLOBALS.CANVAS.ref.height / 2));
+      let randomTile = this.defaultTiles[randomIndex].getCopy(new Point(GLOBALS.CANVAS.ref.width / 2, GLOBALS.CANVAS.ref.height / 2));
 
       return randomTile;
     },
@@ -212,6 +212,7 @@ function animate(time) {
   // If there are no tiles on the board, pick a random one and put it at the center
   if(!GLOBALS.TILES.array.length) {
     GLOBALS.TILES.array.push(GLOBALS.TILES.getRandom());
+
   }
 
   if(interval > 16) {
@@ -269,8 +270,17 @@ function animate(time) {
 
 function init() {  
   // Initialize everything
-  GLOBALS.CANVAS.ref.width = window.innerWidth * 0.95;
-  GLOBALS.CANVAS.ref.height = window.innerHeight * 0.95;
+  // This is a way to fix a Chrome bug
+  const widths = [window.innerWidth * 0.95, window.screen.width * 0.95];
+  const heights = [window.innerHeight * 0.95, window.screen.height * 0.95];
+  // GLOBALS.CANVAS.ref.width = window.innerWidth * 0.95;
+  // GLOBALS.CANVAS.ref.height = window.innerHeight * 0.95;
+  // GLOBALS.CANVAS.ref.width = window.screen.width * 0.95;
+  // GLOBALS.CANVAS.ref.height = window.screen.height * 0.95;
+  GLOBALS.CANVAS.ref.width = Math.min(...widths);
+  GLOBALS.CANVAS.ref.height = Math.min(...heights);
+
+  console.log(widths, heights);
 
   GLOBALS.TILES.defaultTiles = createDefaultTiles();
 
