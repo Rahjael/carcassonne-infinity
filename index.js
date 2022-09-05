@@ -280,4 +280,4 @@ GLOBALS.CAMERA.center = new Point(ctx.canvas.width / 2, ctx.canvas.height / 2);
 
 
 // Run animation
-// animate();
+animate();
