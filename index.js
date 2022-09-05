@@ -173,6 +173,10 @@ GLOBALS.CANVAS.ref.addEventListener('wheel', (event) => {
   
 });
 
+window.addEventListener('load', () => {  
+  // Hide loading banner when document is ready
+  document.querySelector('#loading-banner').style.display = 'none';
+});
 
 function createDefaultTiles() {
   const tiles = [];
@@ -280,8 +284,6 @@ GLOBALS.CANVAS.ref.height = window.innerHeight * 0.95;
 
 GLOBALS.TILES.defaultTiles = createDefaultTiles();
 
-// Hide loading banner when document is ready
-document.querySelector('#loading-banner').style.display = 'none';
 
 
 GLOBALS.CAMERA.center = new Point(ctx.canvas.width / 2, ctx.canvas.height / 2);
