@@ -80,7 +80,7 @@ export const TILES_POOL = [
   {img: "CastleWallJunction1.png", sides: [2,1,2,2]},
   {img: "CastleWallJunction2.png", sides: [2,2,1,2]},
   {img: "CastleWallJunction3.png", sides: [2,2,2,1]},
-  {img: "CastleWallRoad0.png", sides: [1,2,0,1]},
+  {img: "CastleWallRoad0.png", sides: [1,2,0,2]},
   {img: "CastleWallRoad1.png", sides: [2,1,2,0]},
   {img: "CastleWallRoad2.png", sides: [0,2,1,2]},
   {img: "CastleWallRoad3.png", sides: [2,0,2,1]},

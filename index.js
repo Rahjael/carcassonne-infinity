@@ -172,7 +172,6 @@ GLOBALS.CANVAS.ref.addEventListener('wheel', (event) => {
   }
   
 });
-
 window.addEventListener('load', init);
 
 function createDefaultTiles() {
