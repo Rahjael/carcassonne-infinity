@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+}
+
+nav {
+  position: absolute;
+  background: red;
+}
+
+canvas {
+  background-color: rgb(72, 61, 139);
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: solid 1px rgb(99, 89, 169);
+  border-radius: 5px;
+}
