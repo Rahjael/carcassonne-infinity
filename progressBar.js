@@ -17,6 +17,7 @@ export class ProgressBar {
 
   updateValue(value, outOf) {
     this.value = value * this.max / outOf;
+    console.log('bar updated');
   }
 
   draw() {

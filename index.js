@@ -185,7 +185,7 @@ function createDefaultTiles(progressBar) {
     else {
       newTile.type = 'road';
     }
-    // console.log('created tile', newTile.imageName);
+    console.log('created tile', newTile.imageName);
 
     tiles.push(newTile);
     progressBar.updateValue(i, TILES_POOL.length);
